@@ -1,0 +1,20 @@
+.b-header {
+    height: 75px;
+    background-color: $background-dark;
+    position: relative;
+
+    &__navMenu {
+        position: absolute;
+        right: 0;
+        top: 75px;
+        z-index: 2;
+
+        &_hidden {
+            display: none;
+        }
+    }
+}
+
+@import "header_navBar";
+@import "header_navMenu";
+@import "header_cart";

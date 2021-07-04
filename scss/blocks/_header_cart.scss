@@ -1,0 +1,81 @@
+.b-cart {
+    position: relative;
+    text-align: center;
+
+    &__number {
+        position: absolute;
+        background-color: $theme;
+        z-index: 100;
+        font-size: 12px;
+        line-height: 19px;
+        height: 19px;
+        width: 19px;
+        color: #FFFFFF;
+        border-radius: 50%;
+        top: -38px;
+        right: calc(50% - 580px);
+        @media (max-width: 1180px) {
+            right: calc(50% - 562px);
+        }
+        @media (max-width: 1140px) {
+            right: 8px;
+        }
+        @media (max-width: 1024px) {
+            right: 22px;
+        }
+        @media (max-width: 667px) {
+            display: none;
+        }
+
+        &_hidden {
+            display: none;
+        }
+    }
+
+    &__cart-items {
+        position: absolute;
+        top: 17px;
+        right: calc(50% - 580px);
+        background-color: $categories-light;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        z-index: 100;
+
+        &_hidden {
+            display: none;
+        }
+    }
+
+    &__el {
+        margin: 4px;
+        display: grid;
+        grid-template-columns: 15fr 2fr 3fr 3fr 1fr;
+    }
+
+    &__name {
+        text-align: start;
+        margin: 0 5px;
+    }
+
+    &__price,
+    &__item-total {
+        margin: 0 5px;
+        text-align: end;
+    }
+
+    &__input {
+        border: none;
+        width: 25px;
+        margin: 0 5px;
+    }
+
+    &__closeBtn {
+        margin: 3px 5px 0;
+        text-align: end;
+        cursor: pointer;
+    }
+
+    &__total {
+        margin: 4px;
+        font-weight: 700;
+    }
+}

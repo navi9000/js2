@@ -1,0 +1,39 @@
+.b-navBar {
+    display: flex;
+    justify-content: space-between;
+
+    &__item {
+        cursor: pointer;
+
+        &_right {
+            margin-left: 33px;
+            margin-top: 26px;
+        }
+
+        &_logo {
+            margin: 18px 41px 0 1px;
+            @media (max-width: 1024px) {
+                margin-left: 16px;
+            }
+            @media (max-width: 667px) {
+                margin-left: 0;
+            }
+        }
+
+        &_cart {
+            margin-right: 1px;
+            @media (max-width: 1024px) {
+                margin-right: 16px;
+            }
+            @media (max-width: 667px) {
+                display: none;
+            }
+        }
+
+        &_userIcon {
+            @media (max-width: 667px) {
+                display: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Lato, sans-serif;
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    @media (max-width: 1180px) {
+        box-sizing: border-box;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    @media (max-width: 667px) {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}
+
+.theme-color {
+    color: $theme;
+}

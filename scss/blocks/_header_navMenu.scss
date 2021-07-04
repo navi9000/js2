@@ -1,0 +1,51 @@
+.b-navMenu {
+    width: 232px;
+    height: calc(100vh - 75px);
+    background-color: $categories-light;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    @media (max-width: 1024px) {
+        height: 680px;
+    }
+
+    &__closeBtn {
+        margin: 16px 0 9px 203px;
+        display: inline-block;
+        text-align: right;
+        cursor: pointer;
+    }
+
+    &__header {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 17px;
+        color: $item-dark-text;
+        margin-left: 34px;
+        margin-bottom: 24px;
+        text-transform: uppercase;
+    }
+
+    &__subheader {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        color: $theme;
+        margin-left: 33px;
+        margin-top: 20px;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+    }
+
+    &__listItem {
+        list-style-type: none;
+        margin-bottom: 11px;
+    }
+
+    &__link {
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        color: #6F6E6E;
+        margin-left: 54.5px;
+    }
+}

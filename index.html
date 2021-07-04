@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <title>eShop</title>
+</head>
+
+<body>
+  <header class="b-header">
+    <div class="container b-navBar">
+      <div class="b-navBar__group">
+        <img src="img/logo.svg" alt="Logo" class="b-navBar__item b-navBar__item_logo">
+        <img src="img/search-icon.svg" alt="Search" class="b-navBar__item">
+      </div>
+      <div class="b-navBar__group">
+        <img src="img/menu-icon.svg" alt="Menu" class="b-navBar__item b-navBar__item_right" onclick="showMenu();">
+        <img src="img/user-icon.svg" alt="User" class="b-navBar__item b-navBar__item_right b-navBar__item_userIcon">
+        <img src="img/cart-icon.svg" alt="Cart" class="b-navBar__item b-navBar__item_right b-navBar__item_cart"
+          onclick="toggleCart();">
+      </div>
+    </div>
+    <div class="b-header__navMenu b-navMenu b-header__navMenu_hidden">
+      <img src="img/close-button.svg" alt="Close" class="b-navMenu__closeBtn" onclick="hideMenu();">
+      <h2 class="b-navMenu__header">Menu</h2>
+      <h3 class="b-navMenu__subheader">Men</h3>
+      <ul>
+        <li class="b-navMenu__listItem"><a href="#" class="b-navMenu__link">Accessories</a></li>
+        <li class="b-navMenu__listItem"><a href="#" class="b-navMenu__link">Bags</a></li>
+        <li class="b-navMenu__listItem"><a href="#" class="b-navMenu__link">Denim</a></li>
+        <li class="b-navMenu__listItem"><a href="#" class="b-navMenu__link">T-Shirts</a></li>
+      </ul>
+      <h3 class="b-navMenu__subheader">Women</h3>
+      <ul>
+        <li class="b-navMenu__listItem"><a href="#" class="b-navMenu__link">Accessories</a></li>
+        <li class="b-navMenu__listItem"><a href="#" class="b-navMenu__link">Jackets & Coats</a></li>
+        <li class="b-navMenu__listItem"><a href="#" class="b-navMenu__link">Polos</a></li>
+        <li class="b-navMenu__listItem"><a href="#" class="b-navMenu__link">T-Shirts</a></li>
+        <li class="b-navMenu__listItem"><a href="#" class="b-navMenu__link">Shirts</a></li>
+      </ul>
+      <h3 class="b-navMenu__subheader">Kids</h3>
+      <ul>
+        <li class="b-navMenu__listItem"><a href="#" class="b-navMenu__link">Accessories</a></li>
+        <li class="b-navMenu__listItem"><a href="#" class="b-navMenu__link">Jackets & Coats</a></li>
+        <li class="b-navMenu__listItem"><a href="#" class="b-navMenu__link">Polos</a></li>
+        <li class="b-navMenu__listItem"><a href="#" class="b-navMenu__link">T-Shirts</a></li>
+        <li class="b-navMenu__listItem"><a href="#" class="b-navMenu__link">Shirts</a></li>
+        <li class="b-navMenu__listItem"><a href="#" class="b-navMenu__link">Bags</a></li>
+      </ul>
+    </div>
+    <div class="b-header__cart b-cart">
+      <p class="b-cart__number b-cart__number_hidden"></p>
+      <div class="b-cart__cart-items b-cart__cart-items_hidden">
+        <div class="b-cart__total">TOTAL: $0.00</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="catalog"></div>
+    </div>
+
+  </main>
+
+  <script src="code.js"></script>
+  <script src="cart.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
