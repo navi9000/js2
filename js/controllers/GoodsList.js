@@ -20,7 +20,7 @@ export default
 
     calculateTotalSum() {
         let sum = 0;
-        this._goods.forEach(el => sum += el['price']);
+        this._goods.forEach(el => sum += el._price);
         return sum;
     }
 }
