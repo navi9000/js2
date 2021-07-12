@@ -21,7 +21,6 @@ export default class Core {
 
     getUserInfo(productType) {
         let list = this.getProductTypeList(productType);
-        console.log(list, productType);
         let userInput = +prompt(this.buildPromptMessage(productType, list));
         if (!Number.isInteger(userInput) ||
             (productType != 'topping' && !(userInput > 0 && userInput <= list.length)) ||
