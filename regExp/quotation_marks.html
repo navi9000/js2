@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regular Expressions</title>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<script>
+    let div1 = document.getElementById('div1');
+    let div2 = document.getElementById('div2');
+    
+    let inputStmt = prompt('Please enter some text');
+    // let regExp = /(h|c)a|(r)a/g;
+    
+
+    div1.innerHTML = '<strong>Your input:</strong> ' + inputStmt;
+    inputStmt = inputStmt.replace(/(^[‘'])|(['’]$)/g, '"');
+    inputStmt = inputStmt.replace(/(\s)[‘'](\w)/g, '$1"$2');
+    inputStmt = inputStmt.replace(/([\w\.\,\!\?])['’]([\!\?\s])/g, '$1"$2');
+    div2.innerHTML = '<strong>Replacement:</strong> ' + inputStmt;
+
+</script>
+</body>
+</html>
