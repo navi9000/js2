@@ -1,38 +1,40 @@
-'use strict';
+import dataHandler from "../helpers/dataHandler.js";
+import GoodsList from "./GoodsList.js";
 import CartItem from "./CartItem.js";
+import eventEmitter from "../helpers/eventEmitter.js";
 
-export default class Cart {
+export default class Cart extends GoodsList {
     constructor() {
-        this.cartGoods = [];
-        this.totalQuantity = 0;
+        super();
     }
 
-    getCartItems() {
-        return this.cartGoods;
-    }
-
-    getByID(id) {
-        return this.cartGoods.find(item => item.id == id);
+    load() {
+        super.load(dataHandler.getCart.bind(dataHandler), CartItem);
     }
 
     add(item) {
-        let cartEl = this.getByID(item.id);
+        let cartEl = this._goodsList.find(el => el.id == item.id);
         if (cartEl) {
-            cartEl.quantity++;
+            cartEl.add();
         } else {
-            cartEl = new CartItem(item);
-            this.cartGoods.push(cartEl);
+            super.add(item);
         }
-        this.totalQuantity++;
+        eventEmitter.emit('added', item.id);
     }
 
-    remove(item) {
-        let index = this.cardGoods.findIndex(el => el == item);
-        this.cartGoods.splice(index, 1);
-        this.totalQuantity = this.countTotalQuantity();
+    remove(id) {
+        let item = this._goodsList.find(el => el.id == id);
+        if (item) {
+            if (item.quantity > 1) {
+                item.remove()
+            } else {
+                super.remove(id);
+            }
+        }
+        eventEmitter.emit('removed', id);
     }
 
     countTotalQuantity() {
-        return this.cardGoods.reduce(item => item.quantity, 0);
+        return this._goodsList.reduce((acc, item) => acc + item._quantity, 0);
     }
 }

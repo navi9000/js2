@@ -1,23 +1,32 @@
-import GoodsItem from './GoodsItem.js';
+import eventEmitter from '../helpers/eventEmitter.js'
 
 export default class GoodsList {
-    constructor(goods) {
-        this.goods = goods.map(item => new GoodsItem(item));
+    constructor() {
+        this._goodsList = [];
     }
 
-    get() {
-        return this.goods;
-    }
-
-    getByID(id) {
-        return this.goods.find(item => item.id == id);
+    load(callback, type) {
+        callback().then(data => {
+            if (data[0]) {
+                this._goodsList = data.map(item => new type(item));
+            }
+            eventEmitter.emit('loaded');
+        })
     }
 
     add(item) {
-        this.goods.push(item);
+        this._goodsList.push(item);
     }
 
-    calculateTotalSum() {
-        return this.goods.reduce(acc => acc += el.price, 0);
+    remove(id) {
+        this._goodsList = this._goodsList.filter(item => item.id != id);
+    }
+
+    get(id) {
+        return this._goodsList.find(el => el.id == id);
+    }
+
+    getAll() {
+        return this._goodsList;
     }
 }

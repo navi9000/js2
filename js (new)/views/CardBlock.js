@@ -1,10 +1,6 @@
-export default class CartBlock {
+export default class CardBlock {
     constructor(data) {
         this.data = data;
-    }
-
-    getCardBlockId() {
-        return this.data.id;
     }
 
     buildHtml() {
