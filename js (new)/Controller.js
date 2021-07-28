@@ -3,6 +3,7 @@ import Cart from './models/Cart.js';
 import Showcase from './models/Showcase.js'
 import CartItem from './models/CartItem.js';
 import CardBlock from './views/CardBlock.js';
+import CartItemBlock from './views/CartItemBlock.js';
 
 export default {
     _showcaseModel: new Showcase(),
@@ -26,17 +27,19 @@ export default {
             card.render($catalog);
             card.setAddHandler(this._addToCart.bind(this));
         })
-
     },
 
     _addToCart(id) {
         let item = new CartItem(this._showcaseModel.get(id));
         this._cartModel.add(item);
-
-        console.log(this._cartModel);
     },
 
     _renderCart() {
+        let $cartItems = document.querySelector('.b-cart__cart-items');
+        this._showcaseModel.getAll().forEach(item => {
+            let cartItem = new CartItemBlock(item);
+            cartItem.render($cartItems);
+        });
         let $num = document.querySelector('.b-cart__number');
         $num.innerHTML = this._cartModel.countTotalQuantity();
         if ($num.classList.contains('b-cart__number_hidden') && $num.innerHTML > 0) {
@@ -52,6 +55,6 @@ export default {
     },
 
     _toggleCart() {
-        let $cartItems = document.querySelector('.b-cart__cart-items');
+
     }
 }
