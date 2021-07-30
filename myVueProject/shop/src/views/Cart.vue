@@ -16,64 +16,17 @@
     <!-- Cart - Main Content -->
     <form class="container cart-flex">
       <div class="cart-flex-left">
-        <div class="cart-flex-left__item">
-          <img
-            src="img/item3.jpg"
-            alt="Photo 3"
-            class="cart-flex-left__item-img"
-          />
-          <h2 class="cart-flex-left__item-header">mango people<br />t-shirt</h2>
-          <p class="cart-flex-left__item-price">
-            Price: <span class="theme-color">$300</span>
-          </p>
-          <p class="cart-flex-left__item-color">Color: Red</p>
-          <p class="cart-flex-left__item-size">Size: XI</p>
-          <p class="cart-flex-left__item-quantity">
-            Quantity:
-            <input
-              type="number"
-              class="cart-flex-left__item-quantity-input"
-              value="2"
-              min="0"
-              max="9"
-            />
-          </p>
-          <img
-            src="img/close-button.svg"
-            alt="Close"
-            class="cart-flex-left__item-close"
-          />
-        </div>
-        <div class="cart-flex-left__item">
-          <img
-            src="img/item7.jpg"
-            alt="Photo 7"
-            class="cart-flex-left__item-img"
-          />
-          <h2 class="cart-flex-left__item-header">mango people<br />t-shirt</h2>
-          <p class="cart-flex-left__item-price">
-            Price: <span class="theme-color">$300</span>
-          </p>
-          <p class="cart-flex-left__item-color">Color: Red</p>
-          <p class="cart-flex-left__item-size">Size: XI</p>
-          <p class="cart-flex-left__item-quantity">
-            Quantity:
-            <input
-              type="number"
-              class="cart-flex-left__item-quantity-input"
-              value="2"
-              min="0"
-              max="9"
-            />
-          </p>
-          <img
-            src="img/close-button.svg"
-            alt="Close"
-            class="cart-flex-left__item-close"
-          />
-        </div>
+        <CartCard
+          v-bind:key="item.id"
+          v-bind:item="item"
+          v-for="item of cart"
+        />
         <div class="cart-flex-left__buttons">
-          <button type="button" class="cart-flex-left__buttons-btn">
+          <button
+            type="button"
+            class="cart-flex-left__buttons-btn"
+            @click="deleteall()"
+          >
             Clear shopping cart
           </button>
           <button type="button" class="cart-flex-left__buttons-btn">
@@ -105,10 +58,19 @@
         </div>
         <div class="cart-flex-right__submit">
           <h2 class="cart-flex-right__submit-subtotal">
-            subtotal<span>$900</span>
+            subtotal<span
+              >$
+              {{
+                cart.reduce((acc, item) => item.price * item.quantity + acc, 0)
+              }}</span
+            >
           </h2>
           <h2 class="cart-flex-right__submit-total">
-            grand total<span class="theme-color">$900</span>
+            grand total<span class="theme-color"
+              >${{
+                cart.reduce((acc, item) => item.price * item.quantity + acc, 0)
+              }}</span
+            >
           </h2>
           <hr class="cart-flex-right__submit-hr" />
           <button class="cart-flex-right__submit-btn">
@@ -119,6 +81,25 @@
     </form>
   </main>
 </template>
+
+<script>
+import CartCard from "../components/Cart_ProductCard.vue";
+export default {
+  components: {
+    CartCard,
+  },
+  computed: {
+    cart() {
+      return this.$store.getters.getCart;
+    },
+  },
+  methods: {
+    deleteall() {
+      this.$store.dispatch("removeAllFromCart");
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .cart-top {

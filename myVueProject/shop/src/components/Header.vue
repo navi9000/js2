@@ -27,7 +27,13 @@
             src="img/cart-icon.svg"
             alt="Cart"
             class="b-navBar__item b-navBar__item_right b-navBar__item_cart"
-        /></router-link>
+          />
+          <span
+            class="b-cart__number"
+            v-bind:class="{ 'b-cart__number_hidden': cart_quantity == 0 }"
+            >{{ cart_quantity }}</span
+          ></router-link
+        >
       </div>
     </div>
     <div class="b-header__navMenu b-navMenu b-header__navMenu_hidden">
@@ -100,13 +106,21 @@
 export default {
   name: "Header",
   methods: {
-    hide_menu: function hideMenu() {
+    hide_menu: function () {
       let $navMenu = document.querySelector(".b-header__navMenu");
       $navMenu.classList.add("b-header__navMenu_hidden");
     },
-    toggle_menu: function toggleMenu() {
+    toggle_menu: function () {
       let $navMenu = document.querySelector(".b-header__navMenu");
       $navMenu.classList.toggle("b-header__navMenu_hidden");
+    },
+  },
+  computed: {
+    cart_quantity: function () {
+      return this.$store.getters.getCart.reduce(
+        (acc, value) => acc + value.quantity,
+        0
+      );
     },
   },
 };
@@ -153,6 +167,7 @@ export default {
     }
 
     &_cart {
+      position: relative;
       margin-right: 1px;
       @media (max-width: 1024px) {
         margin-right: 16px;
@@ -167,6 +182,37 @@ export default {
         display: none;
       }
     }
+  }
+}
+
+.b-cart__number {
+  position: absolute;
+  text-align: center;
+  background-color: $theme;
+  z-index: 100;
+  font-size: 12px;
+  line-height: 21px;
+  height: 19px;
+  width: 19px;
+  color: #ffffff;
+  border-radius: 50%;
+  top: 21px;
+  right: calc(50% - 580px);
+  @media (max-width: 1180px) {
+    right: calc(50% - 562px);
+  }
+  @media (max-width: 1140px) {
+    right: 8px;
+  }
+  @media (max-width: 1024px) {
+    right: 22px;
+  }
+  @media (max-width: 667px) {
+    display: none;
+  }
+
+  &_hidden {
+    display: none;
   }
 }
 

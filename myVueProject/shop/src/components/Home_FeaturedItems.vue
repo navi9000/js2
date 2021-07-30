@@ -5,15 +5,30 @@
       <p class="items-subheader">
         Shop for items based on what we featured in this week
       </p>
-      <div class="items-grid"></div>
+      <div class="items-grid">
+        <ProductCard
+          v-bind:key="item.id"
+          v-bind:item="item"
+          v-for="item of catalog"
+        />
+      </div>
       <button type="button" class="items-button">Browse All Products</button>
     </div>
   </div>
 </template>
 
 <script>
+import ProductCard from "./Home_ProductCard.vue";
 export default {
   name: "Home_FeaturedItems",
+  components: {
+    ProductCard,
+  },
+  computed: {
+    catalog() {
+      return this.$store.getters.getCatalog;
+    },
+  },
 };
 </script>
 
@@ -36,6 +51,22 @@ export default {
   margin-bottom: 48px;
   @media (max-width: 667px) {
     margin-bottom: 65px;
+  }
+}
+
+.items-grid {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(3, minmax(auto, 360px));
+  margin-bottom: 48.5px;
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, minmax(auto, 720px));
+    grid-gap: 16px;
+    margin-bottom: 33px;
+  }
+  @media (max-width: 667px) {
+    grid-template-columns: 1fr;
+    margin-bottom: 41px;
   }
 }
 

@@ -7,5 +7,16 @@ module.exports = {
                 @import "@/styles/_pageTitleBlock.scss";`,
             }
         }
+    },
+    devServer: {
+        proxy: {
+            '^/api': {
+                target: 'http://localhost:3000',
+                changeOrigin: true,
+                secure: false,
+                logLevel: 'debug',
+                pathRewrite: { '^/api': '/api' }
+            }
+        }
     }
 }
