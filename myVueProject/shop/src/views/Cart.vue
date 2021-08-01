@@ -16,22 +16,17 @@
     <!-- Cart - Main Content -->
     <form class="container cart-flex">
       <div class="cart-flex-left">
-        <CartCard
-          v-bind:key="item.id"
-          v-bind:item="item"
-          v-for="item of cart"
-        />
+        <CartCard :key="item.id" :item="item" v-for="item of cart" />
         <div class="cart-flex-left__buttons">
           <button
             type="button"
             class="cart-flex-left__buttons-btn"
+            v-if="cart.reduce((acc, value) => acc + value.quantity, 0)"
             @click="deleteall()"
           >
             Clear shopping cart
           </button>
-          <button type="button" class="cart-flex-left__buttons-btn">
-            Continue shopping
-          </button>
+          <p v-else>Cart is empty</p>
         </div>
       </div>
       <div class="cart-flex-right">

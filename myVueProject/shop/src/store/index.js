@@ -31,13 +31,13 @@ export default new Vuex.Store({
     removeItemFromCart(state, id) {
       let index = state.cart.findIndex(item => item.id === id);
       state.cart.splice(index, 1);
-      console.log(state.cart)
     },
-    // modifyQuantity(state, [id, quantity]) {
-    //   let modifiedItem = state.cart.find(item => item.id === id);
-    //   modifiedItem.quantity = quantity;
-    //   console.log(state.cart)
-    // }
+    modifyQuantity(state, item) {
+      console.log(state.cart)
+      let modifiedItem = state.cart.find(el => el.id === item.id);
+      console.log(state.cart)
+      // modifiedItem.quantity = item.quantity;
+    }
   },
   actions: {
     loadCatalog({ commit }) {
@@ -57,9 +57,10 @@ export default new Vuex.Store({
       return fetch('api/cart', { method: 'POST', body: JSON.stringify(item) })
         .then(() => commit('removeItemFromCart', item.id));
     },
-    // changeQuantity({ commit }, [item, quantity]) {
-    //   return fetch('api/cart', { method: 'POST', body: JSON.stringify(item) })
-    //     .then(() => commit('modifyQuantity', [item.id, quantity]));
-    // }
+    changeQuantity({ commit }, item) {
+      console.log(this.state.cart)
+      return fetch('api/cart', { method: 'POST', body: JSON.stringify(item) })
+        .then(() => { console.log(item); commit('modifyQuantity', item) });
+    }
   }
 })

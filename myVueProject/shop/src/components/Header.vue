@@ -28,11 +28,9 @@
             alt="Cart"
             class="b-navBar__item b-navBar__item_right b-navBar__item_cart"
           />
-          <span
-            class="b-cart__number"
-            v-bind:class="{ 'b-cart__number_hidden': cart_quantity == 0 }"
-            >{{ cart_quantity }}</span
-          ></router-link
+          <span class="b-cart__number" v-show="cart_quantity">{{
+            cart_quantity
+          }}</span></router-link
         >
       </div>
     </div>

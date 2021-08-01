@@ -6,11 +6,7 @@
         Shop for items based on what we featured in this week
       </p>
       <div class="items-grid">
-        <ProductCard
-          v-bind:key="item.id"
-          v-bind:item="item"
-          v-for="item of catalog"
-        />
+        <ProductCard :key="item.id" :item="item" v-for="item of catalog" />
       </div>
       <button type="button" class="items-button">Browse All Products</button>
     </div>

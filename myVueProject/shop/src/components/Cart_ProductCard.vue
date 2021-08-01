@@ -16,7 +16,8 @@
       <input
         type="number"
         class="cart-flex-left__item-quantity-input"
-        :value="item.quantity"
+        v-model.number="item.quantity"
+        @change="changeQuantity(item)"
         min="0"
         step="1"
       />
@@ -25,8 +26,8 @@
       src="img/close-button.svg"
       alt="Close"
       class="cart-flex-left__item-close"
-      v-bind:key="item.id"
-      v-bind:item="item"
+      :key="item.id"
+      :item="item"
       @click="removeFromCart(item)"
     />
   </div>
@@ -39,9 +40,9 @@ export default {
     removeFromCart(item) {
       this.$store.dispatch("removeFromCart", item);
     },
-    // changeQuantity(item) {
-    //   this.$store.dispatch("changeQuantity", [item, event.target.value]);
-    // },
+    changeQuantity(item) {
+      this.$store.dispatch("changeQuantity", item);
+    },
   },
 };
 </script>

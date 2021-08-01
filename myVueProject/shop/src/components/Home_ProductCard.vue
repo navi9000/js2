@@ -27,7 +27,6 @@ export default {
   methods: {
     addToCart() {
       this.$store.dispatch("loadToCart", this.item);
-      console.log(this.$store.getters.getCart);
     },
   },
 };
