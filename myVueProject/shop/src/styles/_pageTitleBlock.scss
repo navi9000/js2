@@ -1,0 +1,46 @@
+.b-pageTitleBlock {
+    height: 148px;
+    background-color: $theme-light;
+
+    &__flexWrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+        padding-top: 59px;
+        @media (max-width: 667px) {
+            flex-direction: column;
+            padding-top: 24px;
+        }
+
+        &_noBreadcrumbs {
+            @media (max-width: 667px) {
+                padding-top: 59px;
+            }
+        }
+    }
+
+    &__pageTitle {
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        color: $theme;
+        text-transform: uppercase;
+    }
+
+    &__breadcrumbs {
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 17px;
+        color: #636363;
+        text-transform: uppercase;
+        @media (max-width: 667px) {
+            margin-top: 32px;
+        }
+    }
+
+    &__activeElement {
+        color: $theme;
+        font-weight: 700;
+    }
+}
