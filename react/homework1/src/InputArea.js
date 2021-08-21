@@ -1,4 +1,14 @@
 import React, { useState, useEffect } from "react";
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(() => ({
+    button: {
+        margin: "0 10px 0 0",
+        backgroundColor: "#c20e0e",
+        color: "#ffffff"
+    }
+}));
 
 function InputArea(props) {
 
@@ -9,21 +19,21 @@ function InputArea(props) {
         setInputMessage('');
     }
 
-    const getArrLength = () => {
-        return props.arr.filter(el => el.user === props.user).length;
-    }
+    const arrLength = props.arr.length;
+
+    const classes = useStyles();
 
     useEffect(() => setTimeout(() => {
-        if (getArrLength() > 0) {
-            let datetime = new Date();
-            props.add(prev => [...prev, { user: 'Robot', message: 'Added at ' + datetime.getHours() + ':' + datetime.getMinutes() }]);
+        if (arrLength > 0) {
+            console.log('Message added');
         }
-    }, 1500), [getArrLength()]);
+    }, 1500), [arrLength]);
 
     return (
         <div className="inputWrapper">
-            <input placeholder="Enter your message" className="inputArea" value={inputMessage} onChange={e => setInputMessage(e.target.value)} onKeyDown={({ key }) => { if (key === 'Enter') onSendMessage() }} />
-            <button className="inputButton" onClick={onSendMessage}>Отправить</button>
+            <input autoFocus={true} placeholder="Enter your message" className="inputArea" value={inputMessage} onChange={e => setInputMessage(e.target.value)} onKeyDown={({ key }) => { if (key === 'Enter') onSendMessage() }} />
+            <Button onClick={onSendMessage} variant="contained" className={classes.button}>Отправить</Button>
+            {/* <button className="inputButton" onClick={onSendMessage}>Отправить</button> */}
         </div>
     )
 }

@@ -1,6 +1,8 @@
+let number = 0;
+
 function Message(props) {
     return (
-        <p className="message-text">{props.text}</p>
+        <p key={number++} className="message-text">{props.text}</p>
     )
 }
 
