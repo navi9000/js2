@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Form</title>
+</head>
+
+<body>
+    <div class="row">
+        <form class="col-lg-6 mx-auto" action="#" novalidate>
+            <div class="form-group">
+                <label class="form-check-label" for="formName">Name:</label>
+                <input type="text" name="name" id="formName" class="form-control form-control-lg" value="">
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <label for="tel">Tel:</label>
+                <input type="text" name="tel" class="form-control form-control-lg" value="">
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email" class="form-control form-control-lg" value="">
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <label for="msg">Message:</label>
+                <textarea name="msg" class="form-control form-control-lg"></textarea>
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="d-grid mt-5">
+                <button type="submit" class="btn btn-primary d-block">Submit</button>
+            </div>
+
+        </form>
+    </div>
+
+
+    <script>
+        'use strict';
+
+        const DATA = {
+            name: '',
+            name_err: 'empty',
+            tel: '',
+            tel_err: 'empty',
+            email: '',
+            email_err: 'empty',
+            text: '',
+            text_err: 'empty'
+        }
+
+        const inputs = document.querySelectorAll('input.form-control');
+        inputs.forEach(input => input.addEventListener('change', changeInput));
+        const textArea = document.querySelector('textarea');
+        textArea.addEventListener('change', changeTextArea);
+        const feedbackDivs = document.querySelectorAll('.invalid-feedback');
+        const submitBtn = document.querySelector('button');
+        submitBtn.addEventListener('click', checkSubmit);
+        const formBlock = document.querySelector('form');
+
+        function changeInput(event) {
+            event.target.setAttribute('value', event.target.value);
+            if (event.target.getAttribute('name') == 'name') {
+                DATA.name = event.target.value;
+                if (!validRegExp(/^[a-zA-Z]+$/, DATA.name)) {
+                    DATA.name_err = 'Name must contain nothing but English letters';
+                } else {
+                    DATA.name_err = '';
+                }
+                feedbackDivs[0].innerHTML = DATA.name_err;
+            }
+            if (event.target.getAttribute('name') == 'tel') {
+                DATA.tel = event.target.value;
+                if (!validRegExp(/^\+\d\(\d{3}\)\d{3}\-\d{4}$/, DATA.tel)) {
+                    DATA.tel_err = 'Make sure you use the following phone number format: +7(000)000-0000';
+                } else {
+                    DATA.tel_err = '';
+                }
+                feedbackDivs[1].innerHTML = DATA.tel_err;
+
+            }
+            if (event.target.getAttribute('name') == 'email') {
+                DATA.email = event.target.value;
+                if (!validRegExp(/^(?:[a-z]+(?:\-|\.))?[a-z]+@[a-z]+\.[a-z]{2,}$/, DATA.email)) {
+                    DATA.email_err = 'Make sure you use one of the following formats: <strong>mymail@mail.ru</strong> or <strong>my.mail@mail.ru</strong> or <strong>my-mail@mail.ru</strong>';
+
+                } else {
+                    DATA.email_err = '';
+                }
+                feedbackDivs[2].innerHTML = DATA.email_err;
+
+            }
+            // modifyErr();
+            console.log(DATA);
+            console.log(DATA.name_err != '' || DATA.tel_err != '' || DATA.email_err != '' || DATA.text_err != '');
+        }
+
+        function changeTextArea(event) {
+            DATA.text = event.target.value;
+            if (!validRegExp(/^.+$/, DATA.text)) {
+                DATA.text_err = 'Message can\'t be empty';
+
+            } else {
+                DATA.text_err = '';
+            }
+            feedbackDivs[3].innerHTML = DATA.text_err;
+
+            console.log(DATA);
+        }
+
+        function validRegExp(regExp, str) {
+            return regExp.test(str);
+        }
+
+        function checkSubmit() {
+
+            if (DATA.name_err) {
+                if (!inputs[0].classList.contains('is-invalid')) {
+                    inputs[0].classList.add('is-invalid');
+                }
+            } else {
+                if (inputs[0].classList.contains('is-invalid')) {
+                    inputs[0].classList.remove('is-invalid');
+                }
+            }
+            if (DATA.tel_err) {
+                if (!inputs[1].classList.contains('is-invalid')) {
+                    inputs[1].classList.add('is-invalid');
+                }
+            } else {
+                if (inputs[1].classList.contains('is-invalid')) {
+                    inputs[1].classList.remove('is-invalid');
+                }
+            }
+            if (DATA.email_err) {
+                if (!inputs[2].classList.contains('is-invalid')) {
+                    inputs[2].classList.add('is-invalid');
+                }
+            } else {
+                if (inputs[2].classList.contains('is-invalid')) {
+                    inputs[2].classList.remove('is-invalid');
+                }
+            }
+            if (DATA.text_err) {
+                if (!textArea.classList.contains('is-invalid')) {
+                    textArea.classList.add('is-invalid');
+                }
+            } else {
+                if (textArea.classList.contains('is-invalid')) {
+                    textArea.classList.remove('is-invalid');
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
