@@ -33,7 +33,6 @@ function InputArea(props) {
         <div className="inputWrapper">
             <input autoFocus={true} placeholder="Enter your message" className="inputArea" value={inputMessage} onChange={e => setInputMessage(e.target.value)} onKeyDown={({ key }) => { if (key === 'Enter') onSendMessage() }} />
             <Button onClick={onSendMessage} variant="contained" className={classes.button}>Отправить</Button>
-            {/* <button className="inputButton" onClick={onSendMessage}>Отправить</button> */}
         </div>
     )
 }
