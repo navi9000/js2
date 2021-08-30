@@ -13,7 +13,6 @@ function Dialog(props) {
 
     let { id } = useParams();
     let item = props.data.filter(item => item.id === id)
-    console.log(props.data, item)
 
     // let item = { id: 1, dialog: [{ id: 1, message: 'Hello', user: 'User1' }] }
 

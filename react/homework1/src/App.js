@@ -14,7 +14,13 @@ import {
   Link
 } from "react-router-dom";
 
+import { useSelector, useDispatch } from 'react-redux'
+import { toggle } from './features/checkbox/checkboxSlice'
+
 function App() {
+
+  const checkbox = useSelector(state => state.checkbox.value)
+  const dispatch = useDispatch()
 
   // const [messagesArray, setMessagesArray] = useState([]);
   const [dialogsArray, setDialogArray] = useState([]);
@@ -44,7 +50,9 @@ function App() {
           <Route path='/dialogs/:id' children={<Dialog data={dialogsArray} />}></Route>
           <Route path="/users">
             <div className="mainWrapper">
-              <div>Profile</div>
+              <div>Profile
+                <input type="checkbox" onChange={() => dispatch(toggle())} />
+              </div>
             </div>
           </Route>
           <Route path="/">
